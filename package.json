@@ -7,8 +7,18 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "crypto": "^1.0.1",
     "express": "^4.17.1"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bingoshao/Movie.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bingoshao/Movie/issues"
+  },
+  "homepage": "https://github.com/bingoshao/Movie#readme",
+  "description": ""
 }

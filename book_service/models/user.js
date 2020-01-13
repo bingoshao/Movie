@@ -22,7 +22,7 @@ userModel.findAll = function (callBack) {
 
 //使用用户名查找的方式
 userModel.findByUsername = function(name,callBack){
-    return this.find({username:name},callBack)
+    this.find({username:name},callBack)
 };
 
 //登录匹配是不是拥有相同的用户名和密码并且没有处于封停状态
