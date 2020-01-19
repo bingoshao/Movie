@@ -1,0 +1,147 @@
+// 格式化样式
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+fieldset,
+input,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset,
+img {
+    border: 0
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var {
+    font-style: normal;
+    font-weight: normal
+}
+ol,
+ul {
+    list-style: none
+}
+caption,
+th {
+    text-align: left
+ }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100% ;
+    font-weight: normal
+}
+// 文字排版、颜色
+.f12{font-size:12px}
+.f13{font-size:13px}
+.f14{font-size:14px}
+.f16{font-size:16px}
+.f20{font-size:20px}
+.fb{font-weight:bold}
+.fn{font-weight:normal}
+.t2{text-indent:2em}
+.gray,a.gray{color:#878787}
+.lh150{line-height:150%}
+.lh180{line-height:180%}
+.lh200{line-height:200%}
+.unl{text-decoration:underline;}
+.no_unl{text-decoration:none;}
+
+// 定位
+.tl{text-align:left}
+.tc{text-align:center}
+.tr{text-align:right}
+.fl{float:left}
+.fr{float:right}
+.cb{clear:both}
+.cl{clear:left}
+.cr{clear:right}
+.vm{vertical-align:middle}
+.pr{position:relative}
+.pa{position:absolute}
+.hidden{visibility:hidden}
+.none{display:none}
+
+body {
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+    background-color: #DEEBF3;
+    background-repeat: repeat-x;
+}
+table {
+    border-collapse: collapse;
+}
+td {
+    padding: 3px;
+}
+img {
+    border: none;
+}
+input {
+    padding: 1px;
+    vertical-align: middle;
+    line-height: normal;
+}
+.main-box {
+    margin-right: auto;
+    margin-left: auto;
+    width: 960px;
+    clear: both;
+    zoom:1;
+    overflow:hidden;
+    background-color: #CCCCCC;
+}
+.text-overflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.box-align-center {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// css定义超链接四个状态也有顺序的。
+/*以上语句分别定义了"链接、已访问过的链接、鼠标停在上方时、点下鼠标时"的样式。
+注意，必须按以上顺序写，否则显示可能和你预想的不一样。记住它们的顺序是“LVHA”。*/
+a:link, a:visited {
+text-decoration: none;
+color: #1F376D;
+}
+a:hover, a:active {
+text-decoration: underline;
+color: #BD0A01;
+border: none;
+}
