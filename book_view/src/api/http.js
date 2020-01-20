@@ -7,20 +7,25 @@ import store from '../store/index'
  * 携带当前页面路由，以期在登录页面完成登录后返回当前页面
  */
 const toLogin = () => {
-    router.replace({
+    router.push({
         path: '/login',
-        query: {
-            redirect: router.currentRoute.fullPath
-        }
     });
 }
 
-// 创建axios实例
-var instance = axios.create({ timeout: 1000 * 12 });
+// 创建一个实例
+const instance = axios.create({
+    // 将我们访问的地址设为baseURL
+    baseURL: "http://localhost:3000",
+    // 设置超时时间
+    timeout: 5000,
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Access-Control-Allow-Credentials": true
+    },
+    // withCredentials: true
+});
 
-// 设置post请求头
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-
+instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /** 
  * 请求失败后的错误统一处理 
@@ -36,7 +41,7 @@ const errorHandle = (status, other) => {
             // 403 token过期
             // 清除token并跳转登录页
         case 403:
-            this.$message.error('登录过期，请重新登录');
+            console.log('登录过期，请重新登录');
             localStorage.removeItem('token');
             store.commit('loginSuccess', null);
             setTimeout(() => {
@@ -45,7 +50,7 @@ const errorHandle = (status, other) => {
             break;
             // 404请求不存在
         case 404:
-            this.$message.error('请求的资源不存在');
+            console.log('请求的资源不存在');
             break;
         default:
             console.log(other);
@@ -57,8 +62,14 @@ instance.interceptors.request.use(config => {
     // 每次发送请求之前判断vuex中是否存在token
     // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
     // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断
-    const token = store.state.token;
-    token && (config.headers.Authorization = token);
+    const token = window.localStorage.getItem("token"); //获取存储在本地的token
+    config.data = JSON.stringify(config.data);
+    config.headers = {
+        'Content-Type': 'application/json' //设置跨域头部,虽然很多浏览器默认都是使用json传数据，但咱要考虑IE浏览器。
+    };
+    if (token) {
+        config.headers.Authorization = "Token " + token; //携带权限参数
+    }
     return config;
 }, error => {
     return Promise.reject(error)

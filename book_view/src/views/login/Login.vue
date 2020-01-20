@@ -8,8 +8,8 @@
         label-width="auto"
         size="small"
         class="demo-ruleForm">
-            <el-form-item label="用户" prop="name">
-                <el-input v-model="ruleForm.name" autocomplete="off"></el-input>
+            <el-form-item label="用户" prop="username">
+                <el-input v-model="ruleForm.username" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
@@ -41,11 +41,11 @@ export default {
       };
       return {
         ruleForm: {
-            name:'admin',
+            username:'admin',
             password: 'admin',
         },
         rules: {
-          name: [
+          username: [
             { validator: validateName, trigger: 'blur' }
           ],
           checpasskPass: [
@@ -56,10 +56,16 @@ export default {
     },
     methods: {
       submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        let self = this
+        self.$refs[formName].validate((valid) => {
           if (valid) {
-            sessionStorage.setItem("token",'11111111')
-            this.$router.push('/home')
+           self.$api.loginApi.login(self.ruleForm)
+            .then(res => {
+              if(res.data.code<=0) {
+                window.localStorage.setItem("token",res.data.data.token)
+              }
+            })
+            // this.$router.push('/home')
           } else {
             console.log('error submit!!');
             return false;

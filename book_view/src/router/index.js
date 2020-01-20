@@ -38,12 +38,8 @@ const router = new vueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    let token = sessionStorage.getItem('token')
-    if (token === '2') {
-        next()
-    } else {
-
-    }
+    // let token = sessionStorage.getItem('token')
+    next()
 })
 
 export default router
